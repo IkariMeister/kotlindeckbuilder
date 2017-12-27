@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt' // New version of the plugin to enable spaces in test names
 
 android {
     compileSdkVersion 25
@@ -39,6 +40,7 @@ task createTestResources << {
 
 dependencies {
     implementation 'com.android.support:support-v4:25.4.0'
+    implementation 'com.android.support:design:25.4.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -62,7 +64,7 @@ dependencies {
     // Unit Testing
     testCompile "com.nhaarman:mockito-kotlin:1.4.0"
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.7.5'
+    testCompile 'org.mockito:mockito-core:2.8.9'
 
     // Square
     compile 'com.squareup.picasso:picasso:2.5.2'

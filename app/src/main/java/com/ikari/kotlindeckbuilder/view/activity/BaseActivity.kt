@@ -11,8 +11,8 @@ import com.ikari.kotlindeckbuilder.extension.inTransaction
  */
 abstract class BaseActivity : AppCompatActivity() {
     abstract val layoutId: Int
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(layoutId)
     }
 

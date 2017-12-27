@@ -1,6 +1,9 @@
 package com.ikari.kotlindeckbuilder.view.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.ikari.kotlindeckbuilder.R
 import com.ikari.kotlindeckbuilder.model.entity.Card
 import com.ikari.kotlindeckbuilder.presenter.CardListPresenter
@@ -22,9 +25,9 @@ class CardListFragment : BasicFragment(), CardListView {
         toast(it.text)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        recycler.adapter = adapter
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView.adapter = adapter
         runBlocking {
             presenter.init()
         }
