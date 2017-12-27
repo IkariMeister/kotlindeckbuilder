@@ -3,9 +3,7 @@ package com.ikari.kotlindeckbuilder.extension
 /**
  * Created by ikari on 26/12/17.
  */
-sealed class Result<out A,out E>{
-
-}
+sealed class Result<out A,out E>
 
 data class Success<out A, out E>(val value:A):Result<A,E>()
 data class Fail<out A,out E>(val error:E):Result<A,E>()

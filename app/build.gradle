@@ -25,6 +25,18 @@ android {
     }
 }
 
+task createTestResources << {
+    def mockMakerFile = new File("$projectDir/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker")
+    if (System.env.MOCK_MAKER != null) {
+        logger.info("Using MockMaker ${System.env.MOCK_MAKER}")
+        mockMakerFile.parentFile.mkdirs()
+        mockMakerFile.createNewFile()
+        mockMakerFile.write(System.env.MOCK_MAKER)
+    } else {
+        logger.info("Using default MockMaker")
+    }
+}
+
 dependencies {
     implementation 'com.android.support:support-v4:25.4.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -32,11 +44,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:recyclerview-v7:25.3.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:recyclerview-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
 
     //anko
     compile "org.jetbrains.anko:anko-common:$ankoVersion"
@@ -48,6 +58,17 @@ dependencies {
     // Kotlin coroutines
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.16'
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.16"
+
+    // Unit Testing
+    testCompile "com.nhaarman:mockito-kotlin:1.4.0"
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.7.5'
+
+    // Square
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
 }
 repositories {
     mavenCentral()

@@ -1,9 +1,10 @@
 package com.ikari.kotlindeckbuilder.view.activity
 
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.os.PersistableBundle
 import com.ikari.kotlindeckbuilder.R
+import com.ikari.kotlindeckbuilder.extension.inTransaction
 import com.ikari.kotlindeckbuilder.presenter.MainPresenter
 import com.ikari.kotlindeckbuilder.view.contract.BasicView
 import com.ikari.kotlindeckbuilder.view.contract.MainView
@@ -19,7 +20,7 @@ class MainActivity : BaseActivity(), MainView {
 
     private val presenter by lazy { MainPresenter(this) }
 
-    override val defaultView by lazy{ CardListFragment()}
+    override val defaultView by lazy { CardListFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -28,18 +29,11 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-    override fun getLayout(): Int {
-        return R.layout.activity_main
-    }
 
     override fun showView(view: BasicView) {
-        when(view){
-            is Fragment -> fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.contentPanel,view,"")
-                    .addToBackStack(null)
-                    .commitAllowingStateLoss()
-            //is Activity -> startActivity()
+        when (view) {
+            is Fragment -> addFragment((view as Fragment), R.id.contentPanel)
+        //is Activity -> startActivity()
 
         }
     }

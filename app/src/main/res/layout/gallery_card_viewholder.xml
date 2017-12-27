@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <ImageView
-        android:layout_width="@dimen/img_width_gallery"
-        android:layout_height="@dimen/img_height_gallery"
+        android:layout_width="@dimen/img_thumb"
+        android:layout_height="@dimen/img_thumb"
         android:id="@+id/imageview"/>
     <TextView
         android:layout_width="@dimen/img_width_gallery"
