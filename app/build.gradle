@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt' // New version of the plugin to enable spaces in test names
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -37,7 +38,9 @@ task createTestResources << {
         logger.info("Using default MockMaker")
     }
 }
-
+realm {
+    syncEnabled = true;
+}
 dependencies {
     implementation 'com.android.support:support-v4:25.4.0'
     implementation 'com.android.support:design:25.4.0'
@@ -50,27 +53,32 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    //dagger
+    kapt 'com.google.dagger:dagger-compiler:2.5'
+    compile 'com.google.dagger:dagger:2.5'
+
     //anko
     compile "org.jetbrains.anko:anko-common:$ankoVersion"
     compile "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
     compile "org.jetbrains.anko:anko-support-v4:$ankoVersion"
     compile "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     compile "org.jetbrains.anko:anko-design:$ankoVersion"
+    compile "org.jetbrains.anko:anko-sqlite:$ankoVersion"
 
     // Kotlin coroutines
-    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.16'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.17'
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.16"
 
     // Unit Testing
-    testCompile "com.nhaarman:mockito-kotlin:1.4.0"
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.8.9'
+    testCompile 'org.mockito:mockito-core:2.8.47'
 
     // Square
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
 repositories {
     mavenCentral()

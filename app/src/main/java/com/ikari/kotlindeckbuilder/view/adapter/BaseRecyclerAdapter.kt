@@ -4,13 +4,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.ikari.kotlindeckbuilder.extension.inflate
+import com.ikari.kotlindeckbuilder.view.viewholder.RecyclerViewHolder
 import kotlin.properties.Delegates
 
 
 /**
  * Created by ikari on 26/12/17.
  */
-abstract class BaseRecyclerAdapter<A, B : BaseRecyclerAdapter<A,B>.ViewHolder<A>> : RecyclerView.Adapter<B>() {
+abstract class BaseRecyclerAdapter<A, B : RecyclerViewHolder<A>> : RecyclerView.Adapter<B>() {
     var data: List<A> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
@@ -28,7 +29,4 @@ abstract class BaseRecyclerAdapter<A, B : BaseRecyclerAdapter<A,B>.ViewHolder<A>
 
     override fun getItemCount() = data.count()
 
-    inner abstract class ViewHolder<in A>(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        abstract fun bind(item: A)
-    }
 }

@@ -1,13 +1,11 @@
 package com.ikari.kotlindeckbuilder.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.ikari.kotlindeckbuilder.R
 import com.ikari.kotlindeckbuilder.model.entity.Card
 import com.ikari.kotlindeckbuilder.presenter.CardListPresenter
-import com.ikari.kotlindeckbuilder.view.adapter.GalleryAdapter
+import com.ikari.kotlindeckbuilder.view.adapter.CardListAdapter
 import com.ikari.kotlindeckbuilder.view.contract.CardListView
 import kotlinx.android.synthetic.main.card_list_fragment.*
 import kotlinx.coroutines.experimental.runBlocking
@@ -21,9 +19,10 @@ class CardListFragment : BasicFragment(), CardListView {
         CardListPresenter(this)
     }
 
-    private val adapter = GalleryAdapter {
+    private val adapter = CardListAdapter {
         toast(it.text)
     }
+
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +33,6 @@ class CardListFragment : BasicFragment(), CardListView {
     }
 
     override fun loadCards(cards: List<Card>) {
-        toast("loaded")
         adapter.data = cards
         adapter.notifyDataSetChanged()
     }
