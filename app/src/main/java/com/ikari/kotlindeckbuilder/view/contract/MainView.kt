@@ -7,5 +7,5 @@ interface MainView:BasicView {
 
     val defaultView : BasicView
 
-    fun showView(view:BasicView)
+    fun showView(view:BasicView, parameters: Pair<String,Any> = Pair(String(),Unit))
 }

@@ -22,9 +22,9 @@ package com.ikari.kotlindeckbuilder.model.entity
 //              val elite: Boolean = false, val affiliation: Affiliation, val forcePips: Int = 0) : Card(name, url)
 //
 //enum class Affiliation { SITH, NAVY, SCUM, DS_NEUTRAL, JEDI, REBEL, SCOUNDREL, LS_NEUTRAL }
-sealed class Card(val id:Int, val name:String,val side:String, val affiliation:String, val text:String)
-class Objective(id:Int, name:String,side:String, affiliation:String, text:String):Card(id,name,side,affiliation,text)
-class Units(id:Int, name:String,side:String, affiliation:String, text:String):Card(id,name,side,affiliation,text)
-class Enhancement(id:Int, name:String,side:String, affiliation:String, text:String):Card(id,name,side,affiliation,text)
-class Event(id:Int, name:String,side:String, affiliation:String, text:String):Card(id,name,side,affiliation,text)
-class Fate(id:Int, name:String,side:String, affiliation:String, text:String):Card(id,name,side,affiliation,text)
+sealed class Card(val id:Int, val name:String,val side:String, val affiliation:String, val text:String, val imgURL:String)
+class Objective(id:Int, name:String,side:String, affiliation:String, text:String, imgURL:String):Card(id,name,side,affiliation,text,imgURL)
+class Units(id:Int, name:String,side:String, affiliation:String, text:String, imgURL:String):Card(id,name,side,affiliation,text,imgURL)
+class Enhancement(id:Int, name:String,side:String, affiliation:String, text:String, imgURL:String):Card(id,name,side,affiliation,text,imgURL)
+class Event(id:Int, name:String,side:String, affiliation:String, text:String, imgURL:String):Card(id,name,side,affiliation,text,imgURL)
+class Fate(id:Int, name:String,side:String, affiliation:String, text:String, imgURL:String):Card(id,name,side,affiliation,text,imgURL)

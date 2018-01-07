@@ -3,8 +3,10 @@
     <dimen name="img_width">200dp</dimen>
     <dimen name="img_height">280dp</dimen>
     <dimen name="img_width_gallery">100dp</dimen>
-    <dimen name="img_height_gallery">140dp</dimen>
+    <dimen name="img_height_gallery">200dp</dimen>
     <dimen name="img_thumb">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_width_gallery">200dp</dimen>
+    <dimen name="card_height_gallery">280dp</dimen>
 
 </resources>

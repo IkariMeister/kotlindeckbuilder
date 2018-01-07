@@ -1,14 +1,15 @@
 package com.ikari.kotlindeckbuilder.presenter
 
+import com.ikari.kotlindeckbuilder.model.entity.Card
 import com.ikari.kotlindeckbuilder.view.contract.DetailCardView
 
 
 /**
  * Created by ikari on 28/12/2017.
  */
-class DetailCardPresenter(view : DetailCardView) : Presenter<DetailCardView> {
+class DetailCardPresenter(val view : DetailCardView, val card: Card) : Presenter<DetailCardView> {
     suspend override fun init() {
-        TODO("not implemented")
+        view.showCard(card)
     }
 
     suspend override fun stop() {

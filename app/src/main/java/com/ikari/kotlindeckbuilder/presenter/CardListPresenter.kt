@@ -31,4 +31,8 @@ class CardListPresenter(
     suspend override fun destroy() {
         TODO("not implemented")
     }
+
+    fun goToDetail(card:Card){
+        view.goToDetail(card)
+    }
 }

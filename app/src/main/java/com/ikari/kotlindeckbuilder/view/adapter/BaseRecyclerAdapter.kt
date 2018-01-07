@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 /**
  * Created by ikari on 26/12/17.
  */
-abstract class BaseRecyclerAdapter<A, B : RecyclerViewHolder<A>> : RecyclerView.Adapter<B>() {
+abstract class BaseRecyclerAdapter<A, B : RecyclerViewHolder<A>>(val listener:((A)->Unit)) : RecyclerView.Adapter<B>() {
     var data: List<A> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
@@ -25,6 +25,7 @@ abstract class BaseRecyclerAdapter<A, B : RecyclerViewHolder<A>> : RecyclerView.
 
     override fun onBindViewHolder(holder: B, position: Int) {
         holder.bind(data[position])
+        holder.itemView.setOnClickListener{listener(data[position])}
     }
 
     override fun getItemCount() = data.count()

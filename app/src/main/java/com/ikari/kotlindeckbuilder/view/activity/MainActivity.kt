@@ -1,16 +1,14 @@
 package com.ikari.kotlindeckbuilder.view.activity
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import com.ikari.kotlindeckbuilder.R
+import com.ikari.kotlindeckbuilder.model.entity.Card
 import com.ikari.kotlindeckbuilder.presenter.MainPresenter
 import com.ikari.kotlindeckbuilder.view.contract.BasicView
+import com.ikari.kotlindeckbuilder.view.contract.DetailCardView
 import com.ikari.kotlindeckbuilder.view.contract.MainView
-import com.ikari.kotlindeckbuilder.view.fragment.CardListFragment
-
-import kotlinx.android.synthetic.main.main_activity.*
+import com.ikari.kotlindeckbuilder.view.fragment.CardSpoilListFragment
 import kotlinx.coroutines.experimental.runBlocking
 
 class MainActivity : BaseActivity(), MainView {
@@ -19,7 +17,7 @@ class MainActivity : BaseActivity(), MainView {
 
     private val presenter by lazy { MainPresenter(this) }
 
-    override val defaultView by lazy { CardListFragment() }
+    override val defaultView by lazy { CardSpoilListFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +25,16 @@ class MainActivity : BaseActivity(), MainView {
 
     }
 
-    override fun showView(view: BasicView) {
+    override fun showView(view: BasicView, parameters: Pair<String, Any>) {
         when (view) {
-            is Fragment -> replaceFragment((view as Fragment), R.id.contentPanel)
-        //is Activity -> startActivity()
+            is DetailCardView -> {
+                view.card = parameters.second as Card
+                replaceFragment((view as Fragment), R.id.contentPanel)
+            }
+            is Fragment ->
+                replaceFragment((view as Fragment), R.id.contentPanel)
 
         }
     }
+
 }
